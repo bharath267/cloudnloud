@@ -1,5 +1,6 @@
 const express = require('express');
 const redis = require('redis');
+const process = require('process');
 
 const app = express();
 const client = redis.createClient({
@@ -9,6 +10,7 @@ const client = redis.createClient({
 client.set('users', 0);
 
 app.get('/', (req, res) => {
+  process.exit(0);
   client.get('users', (err, users) => {
     res.send('Access user count is: ' + users);
     client.set('users', parseInt(users) + 1);
