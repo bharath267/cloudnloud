@@ -3,6 +3,7 @@ services:
   redis-server:
     image: 'redis'
   node:
+    restart: always
     build: .
     ports:
-      - "4001:8081"
+      - "80:8081"

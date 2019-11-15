@@ -6,12 +6,12 @@ const client = redis.createClient({
 	host: 'redis-server',
 	port: 6379
 });
-client.set('visits', 0);
+client.set('users', 0);
 
 app.get('/', (req, res) => {
-  client.get('visits', (err, visits) => {
-    res.send('Number of visits is ' + visits);
-    client.set('visits', parseInt(visits) + 1);
+  client.get('users', (err, users) => {
+    res.send('Access user count is: ' + users);
+    client.set('users', parseInt(users) + 1);
   });
 });
 
