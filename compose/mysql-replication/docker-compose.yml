@@ -1,0 +1,40 @@
+version: '2'
+services:
+  mysqlmaster:
+    image: mysql:5.7
+    hostname: mysqlmaster
+    container_name: mysqlmaster
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_USER: jino
+      MYSQL_PASSWORD: jino
+    volumes:
+      - ./data/master:/var/lib/mysql/
+      - ./file/master:/etc/mysql/mysql.conf.d/
+  mysqlslave:
+    image: mysql:5.7
+    container_name: mysqlslave
+    hostname: mysqlslave
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_USER: jino
+      MYSQL_PASSWORD: jino
+    volumes:
+      - ./data/slave:/var/lib/mysql/
+      - ./file/slave:/etc/mysql/mysql.conf.d/
+  mysqlconfigure:
+    image: mysql:5.7
+    hostname: mysqlconfigure
+    container_name: mysqlconfigure
+    environment:
+      - MYSQL_SLAVE_PASSWORD=root
+      - MYSQL_MASTER_PASSWORD=root
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_REPLICATION_USER=repl
+      - MYSQL_REPLICATION_PASSWORD=repl
+    volumes:
+      - ./file/script:/mnt/
+    command: >
+      bash "/mnt/mysql_connector.sh"
+volumes:
+    db_data: {} 

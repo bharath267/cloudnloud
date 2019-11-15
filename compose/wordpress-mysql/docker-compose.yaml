@@ -3,7 +3,7 @@ services:  #global value
   database:
     image: mysql:5.7
     volumes:
-    - /mnt:/var/lib/mysql
+    - ./data:/var/lib/mysql
     environment:
       MYSQL_ROOT_PASSWORD: somewordpress
       MYSQL_DATABASE: wordpress
@@ -17,10 +17,9 @@ services:  #global value
     - "8080:80"
     restart: always
     environment:
-       WORDPRESS_DB_HOST: database:3306
-       WORDPRESS_DB_USER: wordpress
-       WORDPRESS_DB_PASSWORD: wordpress
-       WORDPRESS_DB_NAME: wordpress
+      WORDPRESS_DB_HOST: database:3306
+      WORDPRESS_DB_USER: wordpress
+      WORDPRESS_DB_PASSWORD: wordpress
+      WORDPRESS_DB_NAME: wordpress
 volumes: #global value
     db_data: {} 
-
