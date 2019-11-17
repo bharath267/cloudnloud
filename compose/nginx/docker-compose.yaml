@@ -1,0 +1,10 @@
+version: "2"
+services:
+  webserver:
+    image: nginx
+    container_name: inx
+    hostname: jino
+    ports:
+      - "80:80"
+    volumes:
+      - ./data:/usr/share/nginx/html/

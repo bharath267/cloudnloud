@@ -1,0 +1,4 @@
+sudo npm install -g reactjs
+create frontend
+cd frontend
+vim Dockerfile
