@@ -1,0 +1,10 @@
+---
+- name: 'start the container'
+  hosts: localhost
+  tasks:
+  - name: 'start httpd container'
+    docker_container:
+      image: httpd
+      state: present
+      name: web-server
+      command: sleep infinity
