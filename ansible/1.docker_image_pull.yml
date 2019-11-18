@@ -1,0 +1,13 @@
+---
+- name: 'Docker image pull from docker repository'
+  hosts: localhost
+  tasks:
+  - name: 'PULL AN IMAGE'
+    docker_image:
+      name: "{{ item }}"
+      source: pull
+    loop:
+    - httpd
+    - centos
+    - redis
+    - alpine
