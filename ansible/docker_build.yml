@@ -1,0 +1,12 @@
+---
+- name: 'docker image build'
+  hosts: localhost
+  tasks:
+  - name: 'Docker nginx image build'
+    docker_image:
+      name: buildnginx
+      tag: v1.0
+      build:
+        path: nginx/
+      state: present
+      source: build

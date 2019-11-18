@@ -5,6 +5,5 @@
   - name: 'start httpd container'
     docker_container:
       image: httpd
-      state: present
+      state: started
       name: web-server
-      command: sleep infinity

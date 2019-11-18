@@ -1,0 +1,7 @@
+---
+- name: 'container manage'
+  hosts: localhost
+  tasks:
+  - name: 'Manage running containers'
+    docker:
+
