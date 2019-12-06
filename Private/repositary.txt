@@ -1,0 +1,35 @@
+## CREDENTIAL FILES LOCATION (EMPTY STATE)
+cat ~/.docker/config.json
+{
+    "auths": {},
+    "HttpHeaders": {
+        "User-Agent": "Docker-Client/19.03.4 (linux)"
+    }
+}
+
+## CREDENTIAL FILES (FILE STATE)
+{
+	"auths": {
+		"repo.treescale.com": {
+			"auth": "amlub2pvZTpBa2lsYUAxOQ=="
+		}
+	},
+	"HttpHeaders": {
+		"User-Agent": "Docker-Client/19.03.4 (linux)"
+}
+
+# docker pull repo.treescale.com/jinojoe/busybox
+Error response from daemon: Get https://repo.treescale.com/v2/jinojoe/busybox/manifests/latest: unauthorized: authentication required
+
+## DOCKER LOGIN
+docker login  repo.treescale.com
+
+##DOCKER IMAGES DOWNLOADS
+docker pull repo.treescale.com/jinojoe/busybox
+
+
+##DOCKER IMAGE UPLOAD
+docker push repo.treescale.com/jinojoe/busybox
+
+##DOCKER IMAGES BUILD
+docker tag busybox:latest repo.treescale.com/jinojoe/busybox
