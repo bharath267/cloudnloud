@@ -30,6 +30,28 @@ https://github.com/FourTimes/Docker/blob/master/container.svg
 a.	Download httpd image and run ping command
 b.	Download busybox image and run ping command
  
+Docker File creation
+
+How to manually commit docker images from docker container
+https://github.com/bvijaycom/docker-jino/blob/master/images/httpd/Dockerfile
+https://github.com/bvijaycom/docker-jino/blob/master/images/nginx/Dockerfile
+
+manual method - https://github.com/bvijaycom/docker-jino/blob/master/images/redis/Alpine-Redis-Manual/command.txt
+via Dockerfile - https://github.com/bvijaycom/docker-jino/blob/master/images/redis/Alpine-Redis/Dockerfile
+via Dockerfile in ubuntu ---> https://github.com/bvijaycom/docker-jino/blob/master/images/redis/Ubuntu/Dockerfile
+
+we can do 2 service in 1 container - but not recommended --> https://github.com/bvijaycom/docker-jino/blob/master/images/supervisord/Dockerfile
+
+ansible via docker build
+**********************
+
+https://github.com/bvijaycom/docker-jino/blob/master/ansible/docker_build.yml
+https://github.com/bvijaycom/docker-jino/blob/master/ansible/docker_image_pull.yml
+https://github.com/bvijaycom/docker-jino/blob/master/ansible/start-container.yml
+
+
+
+*************************************************
 Docker Compose
 
 vimrc setup
