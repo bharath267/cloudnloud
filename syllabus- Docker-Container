@@ -1,0 +1,68 @@
+What is Docker 
+What is container
+What is the difference between baremetal vs VM vs Docker ?
+    https://blog.netapp.com/wp-content/uploads/2016/03/Screen-Shot-2018-03-20-at-9.24.09-AM-1024x548.png
+Docker networking - Bridge,Host,None
+How Docker Works
+How Container works
+How to handle Container and Images
+Port Mapping (firewalld is must)
+if I want to run one service in Linux OS what is required?
+If I go with below then what will be the utilization percentage?
+Baremetal  hypervisor  VM1
+CENTOS  Docker Engine
+5.	In one baremetal setup how container is working?
+6.	In Container how the CLI (any command) communicating with docker engine (JINO Diagram)
+https://github.com/FourTimes/Docker/blob/master/installtion.svg	
+7.	How one container getting launched https://github.com/FourTimes/Docker/blob/master/Docker.svg
+8.	If I issue command (docker docker build ,docker pull,docker create) ,then how the flow works
+https://github.com/FourTimes/Docker/blob/master/container.svg
+9.	Difference between shell and bash
+10.	What is the difference between images and containers
+11.	What is the understanding on NAT vs Bridge
+12.	What is the port mapping?
+13.	How to run the image?
+14.	How to inspect running or exited containers?
+15.	How to pull the docker image?
+16.	How to identify official images from docker hub
+17.	How run the instant commands directly to one image
+18.	Run ping command in 2 image and explain the difference
+a.	Download httpd image and run ping command
+b.	Download busybox image and run ping command
+ 
+Docker Compose
+
+vimrc setup
+   set ai
+   set tabstop=2
+   set expandtab
+Compose Installation
+  1. https://github.com/bvijaycom/docker-jino/blob/master/compose/nginx/docker-compose.yaml
+  2. 2 container in single compose file - https://github.com/bvijaycom/docker-jino/blob/master/compose/node-redis/docker-compose.yaml
+  3. 2 services - both are dependent - https://github.com/bvijaycom/docker-jino/blob/master/compose/wordpress-mysql/docker-compose.yaml
+
+how to create private repository and how to push it ---> docker info command
+  repo.treescale.com
+
+how to create public repository in hub.docker.com and how to push it ---> docker info command
+  hub.docker.com
+
+
+How to automate image build and push to respository only if the image build is sucuessfull - via travis how to automate
+
+https://github.com/bvijaycom/travis-auto--> go here
+
+https://github.com/bvijaycom/travis-auto/blob/master/.travis.yml --> change the repository name and image name
+in this it must yml not yaml
+https://github.com/bvijaycom/travis-auto/blob/master/Dockerfile
+
+push to github 
+
+goto travis and give username and password in settings in variable
+
+change and commit in github,now the auto build and push will start
+
+
+
+
+
