@@ -18,8 +18,8 @@ https://github.com/bvijaycom/docker-jino/blob/master/installtion.svg
 8.	If I issue command (docker docker build ,docker pull,docker create) ,then how the flow works
 https://github.com/bvijaycom/docker-jino/blob/master/container.svg
 10.	What is the difference between images and containers
-************************************
-Docker Installation
+*************************************************************************************************
+Docker Installation in UBUNTU
 
 sudo apt-get update
 sudo apt-get install \
@@ -40,7 +40,27 @@ sudo apt-get update
 
 sudo apt-get install docker-ce docker-ce-cli containerd.io
    
-************************************
+*************************************************************************************************
+
+Docker Installation in CENTOS
+
+sudo yum install -y yum-utils \
+  device-mapper-persistent-data \
+  lvm2
+
+sudo yum-config-manager \
+    --add-repo \
+    https://download.docker.com/linux/centos/docker-ce.repo
+
+
+sudo yum install docker-ce docker-ce-cli containerd.io
+
+sudo systemctl start docker
+
+sudo systemctl enable docker
+
+sudo gpasswd -a rajeshcnl61 docker (without adding rajeshcnl61 user to docker group,we cant run any command without sudo)
+*************************************************************************************************
 to see the docker version
 
 docker --version
@@ -133,9 +153,14 @@ remove:
   
   docker system prune
   
+  ********************************************************************************************
+  To set the name of the docker machine
+  
+  docker run -d --name web httpd
+  
   ****************************************************
   
-  docker run -dit --name web1 -p 8087:80 -v /var/tmp/:/usr/local/apache2/htdocs/ httpd:2.4
+  docker run -dit --name cloudnloud-web -p 8087:80 -v /var/tmp/:/usr/local/apache2/htdocs/ httpd:2.4
   
   8080 port --> base linux machine port
 80 --> docker image port
@@ -143,6 +168,39 @@ remove:
 /usr/local/apache2/htdocs/ --> docker image directory -->(goto docker hub and check it)
 
 **************************************************
+run the container and how to find out the IP address of the container
+
+run the webserver and through that container IP address how to reterive using curl command
+
+docker run -d --name nginxvijay nginx
+docker ps
+docker exec -it nginxvijay bash
+
+reference ---->   https://hub.docker.com/_/nginx
+
+reference ---->   document root - /usr/share/nginx/html/
+
+echo “hi how are you” > /usr/share/nginx/html/index.html
+docker inspect nginxvijay
+**************************************************************************
+dynamic port selection (automatic port selection)
+
+docker run -d -P --name web httpd
+
+-P --> dynamic port selection (automatic port selection)
+
+docker ps -a
+
+to test ----> http://35.224.243.205:32769/
+
+**************************************************************************************************************
+
+Containers logs can be stored in base docker engine machine
+/var/lib/containerd/logs/
+
+
+
+*********************************
 
 Docker file 1
 
@@ -169,5 +227,32 @@ Parthasarathy Sivaraman - Senior Enterprise Architect
 https://github.com/bvijaycom/parthatest
 
 if there is error while building the image ,the push wont happen in the image repository hub.docker.com
+
+**************************************************************************************************************************
+
+How to manually commit docker images from docker container
+
+docker pull centos
+docker run -ti centos bash
+now you are inside that container
+ from inside container now do the following
+ 
+ yum install httpd -y
+ 
+ [root@c0d27abd1cf1 /]# cd /var/www/html
+[root@c0d27abd1cf1 html]# ls
+[root@c0d27abd1cf1 html]# echo "vijay manual commit" > index.html
+
+ Login the same machine from another putty window and do the following
+
+docker commit -c 'CMD ["/usr/sbin/httpd","-D","FOREGROUND"]' c0d27abd1cf1
+
+c0d27abd1cf1 --> container ID
+
+the above commit command will take the snapshot from running container c0d27abd1cf1
+
+now run 
+
+docker images
 
 
