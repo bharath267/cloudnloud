@@ -1,0 +1,159 @@
+What is Docker 
+What is container
+What is the difference between baremetal vs VM vs Docker ?
+    https://blog.netapp.com/wp-content/uploads/2016/03/Screen-Shot-2018-03-20-at-9.24.09-AM-1024x548.png
+Docker networking - Bridge,Host,None
+How Docker Works
+How Container works
+How to handle Container and Images
+Port Mapping (firewalld is must)
+if I want to run one service in Linux OS what is required?
+If I go with below then what will be the utilization percentage?
+Baremetal  hypervisor  VM1
+CENTOS  Docker Engine
+5.	In one baremetal setup how container is working?
+6.	In Container how the CLI (any command) communicating with docker engine (JINO Diagram)
+https://github.com/bvijaycom/docker-jino/blob/master/installtion.svg
+7.	How one container getting launched https://github.com/bvijaycom/docker-jino/blob/master/Docker.svg
+8.	If I issue command (docker docker build ,docker pull,docker create) ,then how the flow works
+https://github.com/bvijaycom/docker-jino/blob/master/container.svg
+10.	What is the difference between images and containers
+************************************
+Docker Installation
+
+sudo apt-get update
+sudo apt-get install \
+    apt-transport-https \
+    ca-certificates \
+    curl \
+    gnupg-agent \
+    software-properties-common
+
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+
+sudo add-apt-repository \
+   "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
+   $(lsb_release -cs) \
+   stable"
+   
+sudo apt-get update
+
+sudo apt-get install docker-ce docker-ce-cli containerd.io
+   
+************************************
+to see the docker version
+
+docker --version
+
+16.	How to identify official images from docker hub
+docker search centos
+13.	How to run the image?
+docker run centos
+
+now this will be exited state.check docker ps -a command
+
+so now you open the docker linux machine in 2 different putty window.
+
+run the below command in one window 
+docker run -it centos bash
+
+in another window do the following command
+
+docker ps -a
+
+see now the container is in running state.
+
+***********************************************************
+
+docker run -dit nginx
+
+now you run docker ps -a command.You wil see up status.
+
+-d is background interactive
+
+*****************************
+
+now i want to login the already running containers
+
+docker ps -a
+
+see which container is running
+
+docker exec -it 9abcc2cfa22e bash
+
+9abcc2cfa22e --> Container ID
+*************************************************************************
+
+14.	How to inspect running or exited containers?
+docker ps -a
+15.	How to pull the docker image?
+docker pull centos
+15.	How to see current images?
+docker images
+17.	How run the instant commands directly to one image
+docker run busybox ping google.com
+18.	Run ping command in 2 image and explain the difference
+a.	Download httpd image and run ping command
+docker run httpd ping google.com
+b.	Download busybox image and run ping command
+docker run busybox ping google.com
+
+********************************************************************
+publish webserver ngnix in port 80
+
+docker container run --publish 80:80 nginx
+
+*********************************************************
+publish webserver ngnix in port 80 --> run in background permanently
+
+docker container run --publish 80:80 --detach nginx
+
+*********************************************************
+
+inspect image
+
+docker image inspect nginx
+
+*******************************************************
+
+inspect container
+
+docker container inspect 9abcc2cfa22e
+
+9abcc2cfa22e--> container id
+
+******************************************************
+
+remove:
+  - all stopped containers
+  - all networks not used by at least one container
+  - all dangling images
+  - all dangling build cache
+  
+  
+  docker system prune
+  
+  ****************************************************
+  
+  docker run -dit --name cloudnloud-web -p 8080:80 -v /var/tmp/:/usr/local/apache2/htdocs/ httpd:2.4
+  
+  8080 port --> base linux machine port
+80 --> docker image port
+/var/tmp/ --> base linux machine directory
+/usr/local/apache2/htdocs/ --> docker image directory -->(goto docker hub and check it)
+
+**************************************************
+
+Docker file 1
+
+FROM ubuntu:latest
+RUN apt update
+RUN apt install -y nginx
+ADD index.html /usr/share/nginx/html/index.html
+EXPOSE 80
+CMD ["nginx", "-g", "daemon off;"]
+
+*******************************************************
+
+
+
