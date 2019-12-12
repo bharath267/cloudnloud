@@ -255,4 +255,32 @@ now run
 
 docker images
 
+**************************************************************
+
+Docker Compose
+
+save the below in docker-compose.yaml
+
+version: "2"
+services:
+  webserver:
+    image: nginx
+    container_name: inx
+    hostname: jino
+    ports:
+      - "80:80"
+    volumes:
+      - ./data:/usr/share/nginx/html/
+      
+
+
+create data directory and create index.html
+
+
+docker-compose up -d 
+
+then 
+
+get the container IP address and curil -i <container ipaddress>
+
 
