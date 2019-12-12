@@ -135,7 +135,7 @@ remove:
   
   ****************************************************
   
-  docker run -dit --name cloudnloud-web -p 8080:80 -v /var/tmp/:/usr/local/apache2/htdocs/ httpd:2.4
+  docker run -dit --name web1 -p 8087:80 -v /var/tmp/:/usr/local/apache2/htdocs/ httpd:2.4
   
   8080 port --> base linux machine port
 80 --> docker image port
