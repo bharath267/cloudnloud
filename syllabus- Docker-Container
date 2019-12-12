@@ -13,10 +13,10 @@ Baremetal  hypervisor  VM1
 CENTOS  Docker Engine
 5.	In one baremetal setup how container is working?
 6.	In Container how the CLI (any command) communicating with docker engine (JINO Diagram)
-https://github.com/FourTimes/Docker/blob/master/installtion.svg	
-7.	How one container getting launched https://github.com/FourTimes/Docker/blob/master/Docker.svg
+https://github.com/bvijaycom/docker-jino/blob/master/installtion.svg
+7.	How one container getting launched https://github.com/bvijaycom/docker-jino/blob/master/Docker.svg
 8.	If I issue command (docker docker build ,docker pull,docker create) ,then how the flow works
-https://github.com/FourTimes/Docker/blob/master/container.svg
+https://github.com/bvijaycom/docker-jino/blob/master/container.svg
 9.	Difference between shell and bash
 10.	What is the difference between images and containers
 11.	What is the understanding on NAT vs Bridge
