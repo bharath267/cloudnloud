@@ -155,5 +155,19 @@ CMD ["nginx", "-g", "daemon off;"]
 
 *******************************************************
 
+docker build -t bvijaycom/cloud_local:latest .    
+docker login 
+
+docker push bvijaycom/cloud_local:latest
+
+*************************************
+
+Complete Image push automation via DevOps CI/CD
+
+Parthasarathy Sivaraman - Senior Enterprise Architect
+
+https://github.com/bvijaycom/parthatest
+
+if there is error while building the image ,the push wont happen in the image repository hub.docker.com
 
 
