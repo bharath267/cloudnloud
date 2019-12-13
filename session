@@ -198,10 +198,102 @@ to test ----> http://35.224.243.205:32769/
 Containers logs can be stored in base docker engine machine
 /var/lib/containerd/logs/
 
+*****************************************************
+To stop any running container
 
+docker stop $(docker ps -q)  
+
+*********************************************************
+To remove all the containers
+
+docker rm $(docker ps -a -q)
 
 *********************************
 
+To remove all docker images in a single command,
+[root@docker-host ~]# docker rmi $(docker images -a -q)
+
+*********************************************************************
+
+what is dangling images
+
+*************************************************************
+
+Remove all exited containers
+You can locate containers using docker ps -a and filter them by their status: created, restarting, running, paused, or exited. To review the list of exited containers, use the -f flag to filter based on status. When you've verified you want to remove those containers, using -q to pass the IDs to the docker rm command.
+
+List:
+
+docker ps -a -f status=exited
+
+Remove:
+
+docker rm $(docker ps -a -f status=exited -q)
+
+Remove containers using more than one filter
+Docker filters can be combined by repeating the filter flag with an additional value. This results in a list of containers that meet either condition. For example, if you want to delete all containers marked as either Created (a state which can result when you run a container with an invalid command) or Exited, you can use two filters:
+
+
+List:
+
+docker ps -a -f status=exited -f status=created
+
+Remove:
+
+docker rm $(docker ps -a -f status=exited -f status=created -q)
+
+Remove containers according to a pattern
+You can find all the containers that match a pattern using a combination of docker ps and grep. When you're satisfied that you have the list you want to delete, you can use awk and xargs to supply the ID to docker rmi. Note that these utilities are not supplied by Docker and not necessarily available on all systems:
+
+List:
+
+docker ps -a |  grep "pattern”
+
+Remove:
+
+docker ps -a | grep "pattern" | awk '{print $3}' | xargs docker rmi
+
+Stop and remove all containers
+You can review the containers on your system with docker ps. Adding the -a flag will show all containers. When you're sure you want to delete them, you can add the -q flag to supply the IDs to the docker stop and docker rm commands:
+
+List:
+
+docker ps -a
+Remove:
+
+docker stop $(docker ps -a -q)
+docker rm $(docker ps -a -q)
+
+Remove a container and its volume
+If you created an unnamed volume, it can be deleted at the same time as the container with the -v flag. Note that this only works with unnamed volumes. When the container is successfully removed, its ID is displayed. Note that no reference is made to the removal of the volume. If it is unnamed, it is silently removed from the system. If it is named, it silently stays present.
+
+Remove:
+
+docker rm -v container_name
+
+to see the container statistics
+
+docker stats 71207cb18cae
+
+******************************************************************************************************************************
+to see the docker master image history
+
+docker history <imageid>
+
+**************************************************
+volume
+
+docker volume create vineeth
+docker volume inspect vineeth
+docker volume ls
+
+default location of volumes --> /var/lib/docker/volumes/
+
+
+docker run --name vineeweb -v vineeth:/usr/local/apache2/htdocs/ -p 8089:80 httpd:2.4 
+
+docker volume prune
+*******************************************************************************************
 Docker file 1
 
 FROM ubuntu:latest
