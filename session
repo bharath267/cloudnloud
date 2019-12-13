@@ -283,4 +283,43 @@ then
 
 get the container IP address and curil -i <container ipaddress>
 
+***********************************************************
 
+goto https://cloud.canister.io website
+
+create account and activate it
+
+create repsitory called cloud
+
+docker login --username=bvijaycom --password=XXXXXXX cloud.canister.io:5000
+
+now you will be logged into canister repository
+
+now we will build the new image
+
+docker pull centos
+docker run -dit centos
+
+docker ps -a--> get the contianer id
+
+docker exec -it 9f65dd0718fa bash
+
+yum install httpd net-tools vsftpd
+echo "vijay" > /var/www/html/index.html
+
+systemctl enable httpd
+systemctl enable vsftpd
+
+now come out and take that running container snapshot
+
+docker commit -c 'CMD ["/usr/sbin/httpd","-D","FOREGROUND"]' 9f65dd0718fa
+
+now run docker images command and you will see one <none> image.
+
+docker tag 9eb486eaf79e cloud.canister.io:5000/bvijaycom/cloud:latest
+
+docker push cloud.canister.io:5000/bvijaycom/cloud
+
+now delete all images.
+
+pull the new image and 
