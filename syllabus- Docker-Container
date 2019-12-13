@@ -1,3 +1,6 @@
+should be 64 bit
+must be kernel version 3.9 and above
+
 What is Docker 
 What is container
 What is the difference between baremetal vs VM vs Docker ?
