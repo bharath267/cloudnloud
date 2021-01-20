@@ -411,6 +411,24 @@ docker tag 9eb486eaf79e cloud.canister.io:5000/bvijaycom/cloud:latest
 
 docker push cloud.canister.io:5000/bvijaycom/cloud
 
-now delete all images.
 
-pull the new image and 
+********************************************************
+now delete all images.
+************************************************
+To stop any running container
+
+docker stop $(docker ps -q)  
+
+*********************************************************
+To remove all the containers
+
+docker rm $(docker ps -a -q)
+
+
+docker rmi $(docker images -a -q)
+
+pull the new image and test it
+
+docker pull cloud.canister.io:5000/bvijaycom/jan2021
+
+cloud.canister.io in GUI in jan2021 repo wont show .coz it will takesome time to replicate.but pull command from your differnt machine or from your friend machine will work which means your custom image is now available in your private repository.
